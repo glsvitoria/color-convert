@@ -1,14 +1,16 @@
 import { useCallback, useEffect, useState } from 'react'
-import { Input } from '../ui/input'
 import { Slider } from '../ui/slider'
+import { convert } from '@/utils/convert'
+import { Input } from '../ui/Input'
 
 interface ColorProps {
+  selectedValue: 'HEX' | 'RGB'
   type: 'red' | 'green' | 'blue'
   value: string
   onChange: (value: string) => void
 }
 
-export const Color = ({ value, onChange, type }: ColorProps) => {
+export const Color = ({ value, onChange, type, selectedValue }: ColorProps) => {
   const completeBackgroundColor = useCallback(() => {
     switch (type) {
       case 'red':
@@ -30,22 +32,36 @@ export const Color = ({ value, onChange, type }: ColorProps) => {
 
   return (
     <div className="flex flex-row gap-6 w-full">
-      <Input
+      <Input.Root
         className="w-16"
-        value={value}
+        value={
+          selectedValue === 'RGB'
+            ? value
+            : convert.uniqueDecimalToHexString(value)
+        }
         onChange={(e) => {
-          if (e.target.value === '') {
+          if (Number(e.target.value) < 0) {
             onChange('0')
             return
           }
 
-          if (parseInt(e.target.value) > 255) {
-            onChange('255')
-            return
+          if (selectedValue === 'RGB') {
+            if (parseInt(e.target.value) > 255) {
+              onChange('255')
+              return
+            }
+          } else {
+            if (
+              Number(convert.uniqueDecimalToHexString(e.target.value)) > 255
+            ) {
+              onChange('255')
+              return
+            }
           }
 
           onChange(e.target.value)
         }}
+        type={selectedValue === 'RGB' ? 'number' : 'text'}
         maxLength={3}
       />
       <Slider

@@ -1,4 +1,4 @@
-import { Input } from '../ui/input'
+import { Input } from '../ui/Input'
 import { SliderTransparency } from '../ui/sliderTransparency'
 
 interface TransparencyProps {
@@ -8,10 +8,9 @@ interface TransparencyProps {
 }
 
 export const Transparency = ({ color, value, onChange }: TransparencyProps) => {
-  console.log(value)
   return (
     <div className="flex flex-row gap-6 w-full">
-      <Input className="w-16" value={value} />
+      <Input.Root className="w-16" value={value} />
       <SliderTransparency
         max={100}
         step={1}

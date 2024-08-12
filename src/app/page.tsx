@@ -8,9 +8,9 @@ import { useState } from 'react'
 
 export default function Home() {
   const [color, setColor] = useState<Color>({
-    red: '255',
-    green: '255',
-    blue: '255',
+    red: '0',
+    green: '0',
+    blue: '0',
     alpha: '100',
   })
 

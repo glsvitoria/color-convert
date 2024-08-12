@@ -1,6 +1,6 @@
 import { Color } from '@/types'
-import { Input } from './ui/input'
 import { convert } from '@/utils/convert'
+import { Input } from './ui/Input'
 
 interface ResultProps {
   color: Color
@@ -17,19 +17,21 @@ export const Result = ({ color }: ResultProps) => {
       />
 
       <div className="flex flex-row gap-4">
-        <Input
+        <Input.Root
           value={
             color.alpha === '100'
               ? `rgb(${color.red}, ${color.green}, ${color.blue})`
               : `rgba(${color.red}, ${color.green}, ${color.blue}, ${Number(color.alpha) / 100})`
           }
+          disabled
         />
-        <Input
+        <Input.Root
           value={
             color.alpha === '100'
-              ? `${convert.decimalToHexString(color)}`
-              : `${convert.decimalToHexString(color)}`
+              ? `#${convert.decimalToHexString(color)}`
+              : `#${convert.decimalToHexString(color)}`
           }
+          disabled
         />
       </div>
     </div>
