@@ -6,7 +6,6 @@ import { Color } from '@/types'
 import BreadcrumbSchema from '@/utils/breadcrumbSchema'
 import { siteNavigationElementData } from '@/utils/siteNavigationElementData'
 import { ArrowRight } from 'lucide-react'
-import { NextSeo } from 'next-seo'
 import { useState } from 'react'
 
 const trial = [
@@ -37,11 +36,6 @@ export default function Home() {
       />
 
       <BreadcrumbSchema trial={trial} />
-
-      <NextSeo
-        title="Home Page"
-        description="Convert color between HEX and RGB"
-      />
 
       <main
         className="w-screen h-screen flex-row flex items-center justify-center gap-8"
