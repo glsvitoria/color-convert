@@ -62,7 +62,7 @@ export const Picker = ({
   })
 
   return (
-    <div className="w-picker h-picker bg-white items-center justify-center p-4 rounded-2xl flex flex-col gap-6 shadow-xl">
+    <div className="md:w-picker sm:w-picker-sm w-full h-picker bg-white items-center justify-center p-4 rounded-2xl flex flex-col lg:gap-6 md:gap-4 gap-2 shadow-xl">
       <HexColorPicker
         color={convert.decimalToHexWithColor(color)}
         onChange={(value) => {
@@ -95,7 +95,7 @@ export const Picker = ({
         <form onSubmit={handleFormSubmit}>
           <Input.Container>
             <Input.Root
-              className="w-44"
+              className="max-w-44"
               error={!!errors.color}
               {...register('color', {
                 onChange: (event) => {
@@ -186,7 +186,7 @@ export const Picker = ({
         </form>
       </div>
 
-      <div className="flex flex-col gap-4 w-full">
+      <div className="flex flex-col lg:gap-6 md:gap-4 gap-2 w-full">
         <Indicator.Color
           type="red"
           value={color.red}

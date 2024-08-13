@@ -19,7 +19,7 @@ export const convert = {
       .padStart(2, '0')
       .toUpperCase()
 
-    const hexValue = `#${redValue}${greenValue}${blueValue}${alphaValue}`
+    const hexValue = `${redValue}${greenValue}${blueValue}${alphaValue}`
 
     if (color.alpha === '100') {
       return hexValue.substring(0, 6)

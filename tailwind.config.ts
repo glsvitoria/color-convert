@@ -20,6 +20,7 @@ const config = {
     extend: {
       width: {
         picker: '500px',
+        'picker-sm': '400px',
       },
       height: {
         picker: '584px',

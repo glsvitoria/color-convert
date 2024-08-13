@@ -38,7 +38,7 @@ export default function Home() {
       <BreadcrumbSchema trial={trial} />
 
       <main
-        className="w-screen h-screen flex-row flex items-center justify-center gap-8"
+        className="w-screen h-screen md:flex-row flex-col flex items-center justify-center lg:gap-8 md:gap-6 gap-4 py-6 px-6"
         style={{
           backgroundColor: `rgba(${color.red}, ${color.green}, ${color.blue}, ${Number(color.alpha) / 100})`,
         }}
@@ -49,11 +49,12 @@ export default function Home() {
           selectValue={selectValue}
           setSelectValue={setSelectValue}
         />
-        <ArrowRight className="text-white w-8 h-8" />
+
+        <ArrowRight className="text-white w-8 h-8 md:rotate-0 rotate-90" />
 
         <Result.Container>
           <Result.ColorBoard color={color} />
-          <div className="flex flex-row gap-4 w-full text-[#5a5a5a]">
+          <div className="flex sm:flex-row flex-col sm:gap-4 gap-2 w-full text-[#5a5a5a]">
             <Result.Output type="HEX" color={color} />
             <Result.Output type="RGB" color={color} />
           </div>
