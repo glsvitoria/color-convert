@@ -54,7 +54,7 @@ export default function Home() {
 
         <Result.Container>
           <Result.ColorBoard color={color} />
-          <div className="flex sm:flex-row flex-col sm:gap-4 gap-2 w-full text-[#5a5a5a]">
+          <div className="flex lg:flex-row flex-col sm:gap-4 gap-2 w-full text-[#5a5a5a]">
             <Result.Output type="HEX" color={color} />
             <Result.Output type="RGB" color={color} />
           </div>
