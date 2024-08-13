@@ -3,8 +3,18 @@
 import { Result } from '@/components/Result'
 import { Picker } from '@/components/picker'
 import { Color } from '@/types'
+import BreadcrumbSchema from '@/utils/breadcrumbSchema'
+import { siteNavigationElementData } from '@/utils/siteNavigationElementData'
 import { ArrowRight } from 'lucide-react'
+import { NextSeo } from 'next-seo'
 import { useState } from 'react'
+
+const trial = [
+  {
+    name: 'Home Page',
+    path: '/',
+  },
+]
 
 export default function Home() {
   const [color, setColor] = useState<Color>({
@@ -17,27 +27,44 @@ export default function Home() {
   const [selectValue, setSelectValue] = useState<'HEX' | 'RGB'>('RGB')
 
   return (
-    <main
-      className="w-screen h-screen flex-row flex items-center justify-center gap-8"
-      style={{
-        backgroundColor: `rgba(${color.red}, ${color.green}, ${color.blue}, ${Number(color.alpha) / 100})`,
-      }}
-    >
-      <Picker
-        color={color}
-        handleChangeColor={(color) => setColor(color)}
-        selectValue={selectValue}
-        setSelectValue={setSelectValue}
+    <>
+      <script
+        id="site-navigation-element"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(siteNavigationElementData),
+        }}
       />
-      <ArrowRight className="text-white w-8 h-8" />
 
-      <Result.Container>
-        <Result.ColorBoard color={color} />
-        <div className="flex flex-row gap-4 w-full text-[#5a5a5a]">
-          <Result.Output type="HEX" color={color} />
-          <Result.Output type="RGB" color={color} />
-        </div>
-      </Result.Container>
-    </main>
+      <BreadcrumbSchema trial={trial} />
+
+      <NextSeo
+        title="Home Page"
+        description="Convert color between HEX and RGB"
+      />
+
+      <main
+        className="w-screen h-screen flex-row flex items-center justify-center gap-8"
+        style={{
+          backgroundColor: `rgba(${color.red}, ${color.green}, ${color.blue}, ${Number(color.alpha) / 100})`,
+        }}
+      >
+        <Picker
+          color={color}
+          handleChangeColor={(color) => setColor(color)}
+          selectValue={selectValue}
+          setSelectValue={setSelectValue}
+        />
+        <ArrowRight className="text-white w-8 h-8" />
+
+        <Result.Container>
+          <Result.ColorBoard color={color} />
+          <div className="flex flex-row gap-4 w-full text-[#5a5a5a]">
+            <Result.Output type="HEX" color={color} />
+            <Result.Output type="RGB" color={color} />
+          </div>
+        </Result.Container>
+      </main>
+    </>
   )
 }
