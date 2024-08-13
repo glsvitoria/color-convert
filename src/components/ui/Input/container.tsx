@@ -3,5 +3,5 @@ interface ContainerProps {
 }
 
 export const Container = ({ children }: ContainerProps) => {
-  return <div className="relative flex flex-col gap-1">{children}</div>
+  return <div className="relative flex flex-col gap-1 w-full">{children}</div>
 }

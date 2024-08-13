@@ -7,7 +7,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from './ui/select'
-import { useState } from 'react'
+import { Dispatch, SetStateAction } from 'react'
 import { Indicator } from './Indicator'
 import { Color } from '@/types'
 import { convert } from '@/utils/convert'
@@ -19,11 +19,16 @@ import { Input } from './ui/Input'
 interface PickerProps {
   color: Color
   handleChangeColor: (color: Color) => void
+  selectValue: 'HEX' | 'RGB'
+  setSelectValue: Dispatch<SetStateAction<'HEX' | 'RGB'>>
 }
 
-export const Picker = ({ color, handleChangeColor }: PickerProps) => {
-  const [selectValue, setSelectValue] = useState<'HEX' | 'RGB'>('HEX')
-
+export const Picker = ({
+  color,
+  handleChangeColor,
+  selectValue,
+  setSelectValue,
+}: PickerProps) => {
   const schema = z.object({
     color: z.string().refine(
       (value) => {
@@ -48,6 +53,7 @@ export const Picker = ({ color, handleChangeColor }: PickerProps) => {
     register,
     handleSubmit,
     formState: { errors },
+    resetField,
   } = useForm<IFormData>({
     mode: 'onChange',
     criteriaMode: 'all',
@@ -62,7 +68,7 @@ export const Picker = ({ color, handleChangeColor }: PickerProps) => {
   })
 
   return (
-    <div className="w-picker h-picker bg-white items-center justify-center p-4 rounded-2xl flex flex-col gap-6">
+    <div className="w-picker h-picker bg-white items-center justify-center p-4 rounded-2xl flex flex-col gap-6 shadow-xl">
       <HexColorPicker
         color={convert.decimalToHexString(color)}
         onChange={(value) => {
@@ -78,75 +84,84 @@ export const Picker = ({ color, handleChangeColor }: PickerProps) => {
       <div className="mr-auto flex flex-row gap-2">
         <Select
           defaultValue={selectValue}
-          onValueChange={(value) => setSelectValue(value as 'HEX' | 'RGB')}
+          onValueChange={(value) => {
+            resetField('color')
+            setSelectValue(value as 'HEX' | 'RGB')
+          }}
         >
           <SelectTrigger>
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="HEX">Hex</SelectItem>
             <SelectItem value="RGB">RGB</SelectItem>
+            <SelectItem value="HEX">Hex</SelectItem>
           </SelectContent>
         </Select>
 
         <form onSubmit={handleFormSubmit}>
           <Input.Container>
-            <Input.Adornment position="start">
-              {selectValue === 'HEX' ? '#' : null}
-            </Input.Adornment>
             <Input.Root
-              className={`w-44 ${selectValue === 'HEX' && 'pl-6'}`}
+              className="w-44"
               error={!!errors.color}
               {...register('color', {
                 onChange: (event) => {
                   const value = event.target.value
                   if (selectValue === 'HEX' && regex.hex.test(value)) {
-                    if (value.length === 3) {
+                    const valueWithoutHash = value.replace('#', '')
+                    if (valueWithoutHash.length === 3) {
                       handleChangeColor({
                         red: convert.hexToDecimalString(
-                          value.substring(0, 1).repeat(2),
+                          valueWithoutHash.substring(0, 1).repeat(2),
                         ),
                         green: convert.hexToDecimalString(
-                          value.substring(1, 2).repeat(2),
+                          valueWithoutHash.substring(1, 2).repeat(2),
                         ),
                         blue: convert.hexToDecimalString(
-                          value.substring(2, 3).repeat(2),
+                          valueWithoutHash.substring(2, 3).repeat(2),
                         ),
                         alpha: convert.hexToDecimalString('FF'),
                       })
-                    } else if (value.length === 4) {
+                    } else if (valueWithoutHash.length === 4) {
                       handleChangeColor({
                         red: convert.hexToDecimalString(
-                          value.substring(0, 1).repeat(2),
+                          valueWithoutHash.substring(0, 1).repeat(2),
                         ),
                         green: convert.hexToDecimalString(
-                          value.substring(1, 2).repeat(2),
+                          valueWithoutHash.substring(1, 2).repeat(2),
                         ),
                         blue: convert.hexToDecimalString(
-                          value.substring(2, 3).repeat(2),
+                          valueWithoutHash.substring(2, 3).repeat(2),
                         ),
                         alpha: convert.hexToDecimalString(
-                          value.substring(3, 4).repeat(2),
+                          valueWithoutHash.substring(3, 4).repeat(2),
                         ),
                       })
-                    } else if (value.length === 6) {
+                    } else if (valueWithoutHash.length === 6) {
                       handleChangeColor({
-                        red: convert.hexToDecimalString(value.substring(0, 2)),
-                        green: convert.hexToDecimalString(
-                          value.substring(2, 4),
+                        red: convert.hexToDecimalString(
+                          valueWithoutHash.substring(0, 2),
                         ),
-                        blue: convert.hexToDecimalString(value.substring(4, 6)),
+                        green: convert.hexToDecimalString(
+                          valueWithoutHash.substring(2, 4),
+                        ),
+                        blue: convert.hexToDecimalString(
+                          valueWithoutHash.substring(4, 6),
+                        ),
                         alpha: convert.hexToDecimalString('FF'),
                       })
-                    } else if (value.length === 8) {
+                    } else if (valueWithoutHash.length === 8) {
                       handleChangeColor({
-                        red: convert.hexToDecimalString(value.substring(0, 2)),
-                        green: convert.hexToDecimalString(
-                          value.substring(2, 4),
+                        red: convert.hexToDecimalString(
+                          valueWithoutHash.substring(0, 2),
                         ),
-                        blue: convert.hexToDecimalString(value.substring(4, 6)),
+                        green: convert.hexToDecimalString(
+                          valueWithoutHash.substring(2, 4),
+                        ),
+                        blue: convert.hexToDecimalString(
+                          valueWithoutHash.substring(4, 6),
+                        ),
                         alpha: convert.hexToDecimalString(
-                          value.substring(6, 8),
+                          valueWithoutHash.substring(6, 8),
                         ),
                       })
                     }
@@ -175,40 +190,6 @@ export const Picker = ({ color, handleChangeColor }: PickerProps) => {
             />
           </Input.Container>
         </form>
-        {/* <Input
-          adornment="%"
-          adornmentPosition="end"
-          className="w-16"
-          value={color.alpha}
-          onChange={(e) => {
-            let value = e.target.value
-
-            const decreaseTo100IfWasBiggerThan = () => {
-              if (Number(value) > 100) {
-                return '100'
-              }
-
-              return value
-            }
-
-            const increaseTo0IfWasSmallerThan = () => {
-              if (Number(value) < 0) {
-                return '0'
-              }
-
-              return value
-            }
-
-            value = decreaseTo100IfWasBiggerThan()
-            value = increaseTo0IfWasSmallerThan()
-
-            handleChangeColor({
-              ...color,
-              alpha: value,
-            })
-          }}
-          maxLength={3}
-        /> */}
       </div>
 
       <div className="flex flex-col gap-4 w-full">
@@ -239,6 +220,7 @@ export const Picker = ({ color, handleChangeColor }: PickerProps) => {
           onChange={(value) => {
             handleChangeColor({ ...color, alpha: value })
           }}
+          selectedValue={selectValue}
         />
       </div>
     </div>
