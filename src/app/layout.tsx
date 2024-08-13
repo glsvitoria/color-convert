@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import GoogleAdsense from '@/utils/googleAdsenve'
+import { GoogleAdSense } from '@/utils/googleAdsense'
+import Head from 'next/head'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -20,8 +21,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br">
+      <Head>
+        <GoogleAdSense pub="1610661391359139" />
+      </Head>
       <body className={inter.className}>{children}</body>
-      <GoogleAdsense pub="1610661391359139" />
     </html>
   )
 }
