@@ -64,13 +64,13 @@ export const Picker = ({
   return (
     <div className="w-picker h-picker bg-white items-center justify-center p-4 rounded-2xl flex flex-col gap-6 shadow-xl">
       <HexColorPicker
-        color={convert.decimalToHexString(color)}
+        color={convert.decimalToHexWithColor(color)}
         onChange={(value) => {
           handleChangeColor({
             ...color,
-            red: convert.hexToDecimalString(value.substring(1, 3)),
-            green: convert.hexToDecimalString(value.substring(3, 5)),
-            blue: convert.hexToDecimalString(value.substring(5, 7)),
+            red: convert.hexToDecimalWithString(value.substring(1, 3)),
+            green: convert.hexToDecimalWithString(value.substring(3, 5)),
+            blue: convert.hexToDecimalWithString(value.substring(5, 7)),
           })
         }}
       />
@@ -104,57 +104,57 @@ export const Picker = ({
                     const valueWithoutHash = value.replace('#', '')
                     if (valueWithoutHash.length === 3) {
                       handleChangeColor({
-                        red: convert.hexToDecimalString(
+                        red: convert.hexToDecimalWithString(
                           valueWithoutHash.substring(0, 1).repeat(2),
                         ),
-                        green: convert.hexToDecimalString(
+                        green: convert.hexToDecimalWithString(
                           valueWithoutHash.substring(1, 2).repeat(2),
                         ),
-                        blue: convert.hexToDecimalString(
+                        blue: convert.hexToDecimalWithString(
                           valueWithoutHash.substring(2, 3).repeat(2),
                         ),
-                        alpha: convert.hexToDecimalString('FF'),
+                        alpha: convert.hexToDecimalWithString('FF'),
                       })
                     } else if (valueWithoutHash.length === 4) {
                       handleChangeColor({
-                        red: convert.hexToDecimalString(
+                        red: convert.hexToDecimalWithString(
                           valueWithoutHash.substring(0, 1).repeat(2),
                         ),
-                        green: convert.hexToDecimalString(
+                        green: convert.hexToDecimalWithString(
                           valueWithoutHash.substring(1, 2).repeat(2),
                         ),
-                        blue: convert.hexToDecimalString(
+                        blue: convert.hexToDecimalWithString(
                           valueWithoutHash.substring(2, 3).repeat(2),
                         ),
-                        alpha: convert.hexToDecimalString(
+                        alpha: convert.hexToDecimalWithString(
                           valueWithoutHash.substring(3, 4).repeat(2),
                         ),
                       })
                     } else if (valueWithoutHash.length === 6) {
                       handleChangeColor({
-                        red: convert.hexToDecimalString(
+                        red: convert.hexToDecimalWithString(
                           valueWithoutHash.substring(0, 2),
                         ),
-                        green: convert.hexToDecimalString(
+                        green: convert.hexToDecimalWithString(
                           valueWithoutHash.substring(2, 4),
                         ),
-                        blue: convert.hexToDecimalString(
+                        blue: convert.hexToDecimalWithString(
                           valueWithoutHash.substring(4, 6),
                         ),
-                        alpha: convert.hexToDecimalString('FF'),
+                        alpha: convert.hexToDecimalWithString('FF'),
                       })
                     } else if (valueWithoutHash.length === 8) {
                       handleChangeColor({
-                        red: convert.hexToDecimalString(
+                        red: convert.hexToDecimalWithString(
                           valueWithoutHash.substring(0, 2),
                         ),
-                        green: convert.hexToDecimalString(
+                        green: convert.hexToDecimalWithString(
                           valueWithoutHash.substring(2, 4),
                         ),
-                        blue: convert.hexToDecimalString(
+                        blue: convert.hexToDecimalWithString(
                           valueWithoutHash.substring(4, 6),
                         ),
-                        alpha: convert.hexToDecimalString(
+                        alpha: convert.hexToDecimalWithString(
                           valueWithoutHash.substring(6, 8),
                         ),
                       })

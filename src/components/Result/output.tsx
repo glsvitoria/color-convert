@@ -16,7 +16,7 @@ export const Output = ({ type, color }: OutputProps) => {
     const value =
       type === 'RGB'
         ? `rgb(${color.red}, ${color.green}, ${color.blue})`
-        : `#${convert.decimalToHexString(color)}`
+        : `#${convert.decimalToHexWithColor(color)}`
 
     navigator.clipboard.writeText(value)
 
@@ -28,8 +28,8 @@ export const Output = ({ type, color }: OutputProps) => {
       <p className="text-inherit">
         {type === 'HEX'
           ? color.alpha === '100'
-            ? `#${convert.decimalToHexString(color)}`
-            : `#${convert.decimalToHexString(color)}`
+            ? `#${convert.decimalToHexWithColor(color)}`
+            : `#${convert.decimalToHexWithColor(color)}`
           : color.alpha === '100'
             ? `rgb(${color.red}, ${color.green}, ${color.blue})`
             : `rgba(${color.red}, ${color.green}, ${color.blue}, ${Number(color.alpha) / 100})`}

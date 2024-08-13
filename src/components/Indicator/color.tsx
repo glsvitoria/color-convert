@@ -37,7 +37,7 @@ export const Color = ({ value, onChange, type, selectedValue }: ColorProps) => {
         value={
           selectedValue === 'RGB'
             ? value
-            : convert.uniqueDecimalToHexString(value)
+            : convert.decimalToHexWithString(value)
         }
         onChange={(e) => {
           if (Number(e.target.value) < 0) {
@@ -51,9 +51,7 @@ export const Color = ({ value, onChange, type, selectedValue }: ColorProps) => {
               return
             }
           } else {
-            if (
-              Number(convert.uniqueDecimalToHexString(e.target.value)) > 255
-            ) {
+            if (Number(convert.decimalToHexWithString(e.target.value)) > 255) {
               onChange('255')
               return
             }

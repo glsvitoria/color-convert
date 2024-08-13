@@ -27,9 +27,7 @@ export const Transparency = ({
         onChange={(e) => {
           console.log(selectedValue)
           if (selectedValue === 'HEX') {
-            const decimalValue = convert.uniqueHexToDecimalString(
-              e.target.value,
-            )
+            const decimalValue = convert.hexToDecimalWithString(e.target.value)
             const alpha = Math.floor(Number(decimalValue) / 2.55)
             console.log(alpha)
             onChange(alpha.toString())
