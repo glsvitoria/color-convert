@@ -17,4 +17,3 @@ export const GoogleAdSense: React.FC<Props> = ({ pub }) => {
     />
   )
 }
-

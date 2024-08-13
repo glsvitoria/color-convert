@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import { GoogleAdSense } from '@/utils/googleAdsense'
 import Head from 'next/head'
+import { GoogleAdSense } from '@/utils/googleAdSense'
 
 const inter = Inter({ subsets: ['latin'] })
 
