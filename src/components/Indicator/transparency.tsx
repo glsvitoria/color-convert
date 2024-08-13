@@ -1,6 +1,6 @@
 import { convert } from '@/utils/convert'
 import { Input } from '../ui/Input'
-import { SliderTransparency } from '../ui/sliderTransparency'
+import { Slider } from '../ui/Slider'
 
 interface TransparencyProps {
   color: string
@@ -41,10 +41,9 @@ export const Transparency = ({
         type={selectedValue === 'RGB' ? 'number' : 'text'}
         maxLength={3}
       />
-      <SliderTransparency
+      <Slider.Container
         max={selectedValue === 'HEX' ? 255 : 100}
         step={1}
-        backgroundColor={color}
         value={
           selectedValue === 'HEX' ? [Number(value) * 2.55] : [Number(value)]
         }
@@ -60,7 +59,9 @@ export const Transparency = ({
 
           onChange(value[0].toString())
         }}
-      />
+      >
+        <Slider.Alpha backgroundColor={color} />
+      </Slider.Container>
     </div>
   )
 }

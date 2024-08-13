@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
-import { Slider } from '../ui/slider'
 import { convert } from '@/utils/convert'
 import { Input } from '../ui/Input'
+import { Slider } from '../ui/Slider'
 
 interface ColorProps {
   selectedValue: 'HEX' | 'RGB'
@@ -64,13 +64,14 @@ export const Color = ({ value, onChange, type, selectedValue }: ColorProps) => {
         type={selectedValue === 'RGB' ? 'number' : 'text'}
         maxLength={3}
       />
-      <Slider
+      <Slider.Container
         max={255}
         step={1}
-        backgroundColor={backgroundColorCompleted}
         value={[parseInt(value)]}
         onValueChange={(value) => onChange(value.toString())}
-      />
+      >
+        <Slider.Color backgroundColor={backgroundColorCompleted} />
+      </Slider.Container>
     </div>
   )
 }

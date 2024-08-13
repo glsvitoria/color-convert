@@ -1,10 +1,5 @@
 import { Copy } from 'lucide-react'
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from '../ui/tooltip'
+import * as Tooltip from '../ui/tooltip'
 import { Color } from '@/types'
 import { useState } from 'react'
 import { convert } from '@/utils/convert'
@@ -39,8 +34,8 @@ export const Output = ({ type, color }: OutputProps) => {
             ? `rgb(${color.red}, ${color.green}, ${color.blue})`
             : `rgba(${color.red}, ${color.green}, ${color.blue}, ${Number(color.alpha) / 100})`}
       </p>
-      <TooltipProvider>
-        <Tooltip
+      <Tooltip.Provider>
+        <Tooltip.Container
           delayDuration={0}
           onOpenChange={(open) => {
             if (open) {
@@ -48,7 +43,7 @@ export const Output = ({ type, color }: OutputProps) => {
             }
           }}
         >
-          <TooltipTrigger
+          <Tooltip.Trigger
             onClick={(event) => {
               event.preventDefault()
             }}
@@ -57,8 +52,8 @@ export const Output = ({ type, color }: OutputProps) => {
               className="text-inherit w-5 h-5 hover:cursor-pointer"
               onClick={handleCopy}
             />
-          </TooltipTrigger>
-          <TooltipContent
+          </Tooltip.Trigger>
+          <Tooltip.Content
             onPointerDownOutside={(event) => {
               event.preventDefault()
             }}
@@ -66,9 +61,9 @@ export const Output = ({ type, color }: OutputProps) => {
             {copyWithSuccess
               ? 'Copiada para área de transferência'
               : 'Copie o código da cor'}
-          </TooltipContent>
-        </Tooltip>
-      </TooltipProvider>
+          </Tooltip.Content>
+        </Tooltip.Container>
+      </Tooltip.Provider>
     </div>
   )
 }

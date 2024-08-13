@@ -1,12 +1,6 @@
 import { HexColorPicker } from 'react-colorful'
 import { zodResolver } from '@hookform/resolvers/zod'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from './ui/select'
+import * as Select from './ui/select'
 import { Dispatch, SetStateAction } from 'react'
 import { Indicator } from './Indicator'
 import { Color } from '@/types'
@@ -82,21 +76,21 @@ export const Picker = ({
       />
 
       <div className="mr-auto flex flex-row gap-2">
-        <Select
+        <Select.Container
           defaultValue={selectValue}
           onValueChange={(value) => {
             resetField('color')
             setSelectValue(value as 'HEX' | 'RGB')
           }}
         >
-          <SelectTrigger>
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="RGB">RGB</SelectItem>
-            <SelectItem value="HEX">Hex</SelectItem>
-          </SelectContent>
-        </Select>
+          <Select.Trigger>
+            <Select.Value />
+          </Select.Trigger>
+          <Select.Content>
+            <Select.Item value="RGB">RGB</Select.Item>
+            <Select.Item value="HEX">Hex</Select.Item>
+          </Select.Content>
+        </Select.Container>
 
         <form onSubmit={handleFormSubmit}>
           <Input.Container>
