@@ -1,69 +1,69 @@
-import { Color } from '@/types'
+import { Color } from "@/types";
 
 export const convert = {
-	decimalToHexWithColor: (color: Color): string => {
-		const redValue = parseInt(color.red)
-			.toString(16)
-			.padStart(2, '0')
-			.toUpperCase()
-		const greenValue = parseInt(color.green)
-			.toString(16)
-			.padStart(2, '0')
-			.toUpperCase()
-		const blueValue = parseInt(color.blue)
-			.toString(16)
-			.padStart(2, '0')
-			.toUpperCase()
-		const alphaValue = parseInt(color.alpha)
-			.toString(16)
-			.padStart(2, '0')
-			.toUpperCase()
+  decimalToHexWithColor: (color: Color): string => {
+    const redValue = parseInt(color.red)
+      .toString(16)
+      .padStart(2, "0")
+      .toUpperCase();
+    const greenValue = parseInt(color.green)
+      .toString(16)
+      .padStart(2, "0")
+      .toUpperCase();
+    const blueValue = parseInt(color.blue)
+      .toString(16)
+      .padStart(2, "0")
+      .toUpperCase();
+    const alphaValue = parseInt(color.alpha)
+      .toString(16)
+      .padStart(2, "0")
+      .toUpperCase();
 
-		const hexValue = `${redValue}${greenValue}${blueValue}${alphaValue}`
+    const hexValue = `${redValue}${greenValue}${blueValue}${alphaValue}`;
 
-		if (color.alpha === '100') {
-			return hexValue.substring(0, 6)
-		}
+    if (color.alpha === "100") {
+      return hexValue.substring(0, 6);
+    }
 
-		return hexValue
-	},
-	decimalToHexWithString: (value: string): string => {
-		const decimal = parseInt(value)
+    return hexValue;
+  },
+  decimalToHexWithString: (value: string): string => {
+    const decimal = parseInt(value);
 
-		if (decimal < 0) {
-			return '00'
-		}
+    if (decimal < 0) {
+      return "00";
+    }
 
-		if (decimal > 255) {
-			return 'FF'
-		}
+    if (decimal > 255) {
+      return "FF";
+    }
 
-		return decimal.toString(16).padStart(2, '0').toUpperCase()
-	},
-	hexToDecimalWithString: (value: string): string => {
-		const decimal = parseInt(value, 16)
+    return decimal.toString(16).padStart(2, "0").toUpperCase();
+  },
+  hexToDecimalWithString: (value: string): string => {
+    const decimal = parseInt(value, 16);
 
-		if (decimal < 0) {
-			return '0'
-		}
+    if (decimal < 0) {
+      return "0";
+    }
 
-		if (decimal > 255) {
-			return '255'
-		}
+    if (decimal > 255) {
+      return "255";
+    }
 
-		return decimal.toString()
-	},
-	alphaDecimalToHexString: (value: string): string => {
-		const normalized = Number(value) / 100
+    return decimal.toString();
+  },
+  alphaDecimalToHexString: (value: string): string => {
+    const normalized = Number(value) / 100;
 
-		const decimalValue = Math.round(normalized * 255)
+    const decimalValue = Math.round(normalized * 255);
 
-		return decimalValue.toString(16).padStart(2, '0').toUpperCase()
-	},
-	alphaHexToDecimalString: (value: string): string => {
-		console.log(value)
-		const decimalValue = parseInt(value, 16)
+    return decimalValue.toString(16).padStart(2, "0").toUpperCase();
+  },
+  alphaHexToDecimalString: (value: string): string => {
+    console.log(value);
+    const decimalValue = parseInt(value, 16);
 
-		return (decimalValue / 255).toString()
-	},
-}
+    return (decimalValue / 255).toString();
+  },
+};

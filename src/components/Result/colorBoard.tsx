@@ -1,16 +1,16 @@
-import { Color } from '@/types'
+import { Color } from "@/types";
 
 interface ColorBoardProps {
-	color: Color
+  color: Color;
 }
 
 export const ColorBoard = ({ color }: ColorBoardProps) => {
-	return (
-		<div
-			className="w-full h-full border border-zinc-400/25 rounded-lg"
-			style={{
-				backgroundColor: `rgba(${color.red}, ${color.green}, ${color.blue}, ${Number(color.alpha) / 100})`,
-			}}
-		/>
-	)
-}
+  return (
+    <div
+      className="h-full w-full rounded-lg border border-zinc-400/25"
+      style={{
+        backgroundColor: `rgba(${color.red}, ${color.green}, ${color.blue}, ${Number(color.alpha) / 100})`,
+      }}
+    />
+  );
+};

@@ -69,19 +69,19 @@
 }
 
 .react-colorful {
-    @apply w-full h-full pointer-events-none !important;
+  @apply pointer-events-none h-full w-full !important;
 }
 
 .react-colorful .react-colorful__last-control {
-    @apply hidden;
+  @apply hidden;
 }
 
 .react-colorful .react-colorful__saturation {
-    @apply rounded-lg !important;
+  @apply rounded-lg !important;
 }
 
 .react-colorful__pointer {
-    @apply hidden;
+  @apply hidden;
 }
 
 input::-webkit-outer-spin-button,
