@@ -4,8 +4,8 @@ import { Error } from './error'
 import { InputComponent } from './input'
 
 export const Input = {
-  Adornment,
-  Container,
-  Root: InputComponent,
-  Error,
+	Adornment,
+	Container,
+	Root: InputComponent,
+	Error,
 }
