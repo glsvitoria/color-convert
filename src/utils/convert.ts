@@ -21,7 +21,7 @@ export const convert = {
 
     const hexValue = `${redValue}${greenValue}${blueValue}${alphaValue}`;
 
-    if (color.alpha === "100") {
+    if (color.alpha === "255") {
       return hexValue.substring(0, 6);
     }
 

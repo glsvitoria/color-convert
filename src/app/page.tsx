@@ -20,7 +20,7 @@ export default function Home() {
     red: "0",
     green: "0",
     blue: "0",
-    alpha: "100",
+    alpha: "255",
   });
 
   const [selectValue, setSelectValue] = useState<"HEX" | "RGB">("RGB");
@@ -55,8 +55,8 @@ export default function Home() {
         <Result.Container>
           <Result.ColorBoard color={color} />
           <div className="flex w-full flex-col gap-2 text-[#5a5a5a] sm:gap-4 lg:flex-row">
-            <Result.Output type="HEX" color={color} />
-            <Result.Output type="RGB" color={color} />
+            <Result.OutputHEX color={color} />
+            <Result.OutputRGB color={color} />
           </div>
         </Result.Container>
       </main>

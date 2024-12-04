@@ -5,7 +5,7 @@ import { Slider } from "../ui/Slider";
 
 interface ColorProps {
   selectedValue: "HEX" | "RGB";
-  type: "red" | "green" | "blue";
+  type: "red" | "green" | "blue" | "alpha";
   value: string;
   onChange: (value: string) => void;
 }
@@ -19,6 +19,8 @@ export const Color = ({ value, onChange, type, selectedValue }: ColorProps) => {
         return `rgb(0, ${value}, 0)`;
       case "blue":
         return `rgb(0, 0, ${value})`;
+      case "alpha":
+        return `rgba(0, 0, 0, ${value})`;
     }
   }, [type, value]);
 

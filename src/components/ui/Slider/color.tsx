@@ -5,6 +5,7 @@ interface ColorProps {
 }
 
 export const Color = ({ backgroundColor }: ColorProps) => {
+  console.log(backgroundColor);
   return (
     <SliderPrimitive.Track
       className="relative h-4 w-full grow overflow-hidden rounded-full"

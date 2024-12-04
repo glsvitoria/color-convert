@@ -208,11 +208,10 @@ export const Picker = ({
           selectedValue={selectValue}
         />
 
-        <Indicator.Transparency
-          color={`${color.red}, ${color.green}, ${color.blue}`}
+        <Indicator.Color
+          type="alpha"
           value={color.alpha}
           onChange={(value) => {
-            console.log(value);
             handleChangeColor({ ...color, alpha: value });
           }}
           selectedValue={selectValue}
