@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Script from "next/script";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -18,11 +19,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br">
-      <script
+      <Script
         async
         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1610661391359139"
         crossOrigin="anonymous"
-      ></script>
+      />
       <meta
         name="google-adsense-account"
         content="ca-pub-1610661391359139"
