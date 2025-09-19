@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
+import { Toaster } from "@/components/ui/sonner";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -29,6 +30,7 @@ export default function RootLayout({
         content="ca-pub-1610661391359139"
       ></meta>
       <body className={inter.className}>{children}</body>
+      <Toaster />
     </html>
   );
 }

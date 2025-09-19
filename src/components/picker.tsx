@@ -62,7 +62,7 @@ export const Picker = ({
   });
 
   return (
-    <div className="flex h-picker w-full flex-col items-center justify-center gap-2 rounded-2xl bg-white p-4 shadow-xl sm:w-picker-sm md:w-picker md:gap-4 lg:gap-6">
+    <div className="flex h-96 w-full flex-col items-center justify-center gap-2 rounded-2xl bg-white p-4 shadow-xl sm:w-picker-sm md:h-picker md:w-picker md:gap-4 lg:gap-6">
       <HexColorPicker
         color={convert.decimalToHexWithColor(color)}
         onChange={(value) => {
